@@ -21,3 +21,6 @@
   `drizzle/migrations/` and the generated types stay in sync.
 - Sign-in uses the generated Cloud Auth helper (`@/integrations/lovable`) for
   social providers and the generated Supabase client for email flows.
+- The build has two targets: Lovable's default edge format, and Vercel's when
+  `process.env["VERCEL"]` is set (see `vite.config.ts`). Never force the Vercel
+  preset unconditionally — it would break Lovable preview/publish.

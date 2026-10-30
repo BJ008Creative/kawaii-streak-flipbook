@@ -24,3 +24,20 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy to Vercel
+
+The app builds for Vercel automatically when Vercel runs the build (it sets
+`VERCEL=1`, and `vite.config.ts` switches the output format). The database and
+sign-in stay on Lovable Cloud — Vercel only hosts the app itself.
+
+1. Push this repository to GitHub (in Lovable: **More → Git → Connect**).
+2. In Vercel: **Add New → Project → Import** the repository.
+3. Framework preset: **Other**. Build command `npm run build`, output left as
+   default — the build emits `.vercel/output` itself.
+4. Add the four environment variables from `.env.example`
+   (Settings → Environment Variables).
+5. Deploy.
+
+The same database serves both the Lovable-hosted site and the Vercel one, so
+streaks stay in sync between them.

@@ -7,3 +7,5 @@
 - [ ] Push frontend + backend to GitHub — needs the user to connect a repository in
       Project settings → Git (Lovable cannot connect it from chat)
 - [ ] Republish so the live site uses the cloud backend
+- [ ] Deploy to Vercel — needs the user's Vercel account; repo must build with the
+      Vercel target and env vars set there
