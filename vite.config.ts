@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Vercel sets VERCEL=1 during its builds; only there do we emit the Vercel
+  // output format. Everywhere else (Lovable preview/publish) stays on the default.
+  nitro: process.env.VERCEL ? { preset: "vercel" } : {},
 });
