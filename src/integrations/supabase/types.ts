@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      streaks: {
+        Row: {
+          color: string
+          created_at: string
+          created_on: string
+          done: string[]
+          emoji: string
+          goal: number
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          created_on?: string
+          done?: string[]
+          emoji?: string
+          goal?: number
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          created_on?: string
+          done?: string[]
+          emoji?: string
+          goal?: number
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
