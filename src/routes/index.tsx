@@ -158,7 +158,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 function AddDialog({ onClose, onAdd }: { onClose: () => void; onAdd: (s: Streak) => void }) {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState(30);
-  const [emoji, setEmoji] = useState(EMOJIS[0]);
+  const [emoji, setEmoji] = useState<string>("🌸");
   const [color, setColor] = useState<Streak["color"]>("pink");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 p-4" onClick={onClose}>
