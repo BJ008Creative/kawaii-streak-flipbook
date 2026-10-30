@@ -61,13 +61,33 @@ function Auth() {
         options: { emailRedirectTo: window.location.origin },
       });
       setBusy(false);
-      if (error) return setNote(error.message);
+      if (error) {
+        if (/weak|easy to guess/i.test(error.message))
+          return setNote("That password is too common (it shows up in leaked lists) ~ try a longer, unique one ♡");
+        return setNote(error.message);
+      }
       if (data.session) return goCalendar();
-      return setNote("Almost there ~ confirm your email, then sign in ♡");
+      return setNote(
+        "Almost there ~ we emailed you a link. Open it (check spam too!), then come back and sign in ♡",
+      );
     }
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     setBusy(false);
-    if (error) return setNote(error.message);
+    if (error) {
+      if (/not confirmed/i.test(error.message)) {
+        await supabase.auth.resend({
+          type: "signup",
+          email: email.trim(),
+          options: { emailRedirectTo: window.location.origin },
+        });
+        return setNote(
+          "Your email isn't confirmed yet ~ we just sent a fresh link. Open it (check spam), then sign in ♡",
+        );
+      }
+      if (/invalid login/i.test(error.message))
+        return setNote("Email or password doesn't match ~ or sign up first if you're new ♡");
+      return setNote(error.message);
+    }
     goCalendar();
   };
 
