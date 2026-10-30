@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_authenticated")({
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) throw redirect({ to: "/auth" });
+    if (!user) throw redirect({ to: "/auth", search: { mode: "signin" } });
   },
   component: () => <Outlet />,
 });
